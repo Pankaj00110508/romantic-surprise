@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Mahek 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffe0cc);
+      color: #333;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #e91e63;
+    }
+    button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .questionnaire, .final-page {
+      display: none;
+    }
+    input[type="text"], select {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 2px solid #ffc1e3;
+      border-radius: 8px;
+    }
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    audio { display: none; }
+
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: pink;
+      position: absolute;
+      animation: floatHearts 8s linear infinite;
+      clip-path: polygon(50% 0%, 61% 20%, 80% 25%, 100% 40%, 80% 75%, 50% 100%, 20% 75%, 0 40%, 20% 25%, 39% 20%);
+    }
+    @keyframes floatHearts {
+      0% {transform: translateY(100vh) scale(1); opacity: 1;}
+      100% {transform: translateY(-10vh) scale(0.5); opacity: 0;}
+    }
+    .special-surprise {
+      font-size: 1.1rem;
+      margin-top: 30px;
+      padding: 15px;
+      border: 2px dashed #ff8fb1;
+      background-color: #fff0f5;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/15/audio_3f218d1db1.mp3?filename=romantic-piano-14474.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="hearts"></div>
+
+  <div class="container">
+    <div class="welcome fade-in">
+      <h1>Hey Mahek 💖</h1>
+      <p>This is your babydoll speaking 😘<br> I have something really special planned for you...</p>
+      <button onclick="startQuestions()">Start the Surprise 💌</button>
+    </div>
+
+    <div class="questionnaire fade-in">
+      <h2>But first, a few fun questions 👀</h2>
+
+      <p>1. What vibe do you want for the date outfit? 💃 (You can choose more than one!)</p>
+      <select id="outfitVibe">
+        <option>Cute & Comfy</option>
+        <option>Glam Babe Look 💄</option>
+        <option>Sporty-chic 👟</option>
+        <option>Let babydoll pick("Thats me") 😘</option>
+      </select>
+
+      <p>2. What makes your day instantly better? 💗</p>
+      <select id="dayImprover">
+        <option>A long tight hug 🤗</option>
+        <option>Good food and a cozy chat 🍔💬</option>
+        <option>Surprise notes/gestures 💌</option>
+        <option>Just chilling with you</option>
+		<option>Playing Arcade</option>
+      </select>
+
+      <p>3. You had this Thursday off, what’s one thing you’d love to do together? 🌤️</p>
+      <select multiple id="thursdayActivity">
+        <option>Go for a long drive 🚗</option>
+        <option>Go for shopping followed by some unique things ☕</option>
+        <option>Just sit by each other quietly</option>
+        <option>Play arcade games, bowling, lazer tag and enjoy 🌍</option>
+      </select>
+
+      <button onclick="showFinalPage()">Reveal the Plan ✨</button>
+    </div>
+
+    <div class="final-page fade-in">
+      <h2>🥹 Mango, here's our magical day plan 💌</h2>
+      <p><strong>Date:</strong> 1st May 2025 (Thursday)</p>
+      <p><strong>Time:</strong> 11:00 AM sharp ⏰</p>
+	  <P><strong>Venue:</strong> Shopping at infinit mall followed by arcade, bowling and food. </p>
+      <p><strong>Itinerary:</strong></p>
+      <ul style="text-align: left">
+        <li>🛍️ Shopping spree like celebs</li>
+        <li>🎳 Bowling challenge (loser buys something fun 😉)</li>
+        <li>👾 Arcade gaming and chill</li>
+        <li>🍟 Food, talk and a cozy ride</li>
+      </ul>
+      <h3>So Mahek, will you be my date for this beautiful Thursday? 💖</h3>
+      <button onclick="revealLoveMessage(this)">Yes, I’m in 😍</button>
+      <p id="loveMessage" style="display:none; margin-top: 20px; color: #e91e63; font-size: 1.2rem;" class="fade-in"></p>
+      <div class="special-surprise" id="secretNote" style="display:none">
+        💌 Surprise: There’s a tiny letter and a gift waiting for you that day, just like this website – full of thought and love! 💝
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startQuestions() {
+      document.querySelector('.welcome').style.display = 'none';
+      document.querySelector('.questionnaire').style.display = 'block';
+    }
+
+    function showFinalPage() {
+      document.querySelector('.questionnaire').style.display = 'none';
+      document.querySelector('.final-page').style.display = 'block';
+    }
+
+    function revealLoveMessage(button) {
+      button.style.display = 'none';
+      const msg = document.getElementById('loveMessage');
+      msg.innerHTML = "You just made my heart do a happy dance 💃🕺<br>Can't wait to create the sweetest memories with you, baby 💗<br><em>~ Forever yours, Your babydoll 😘</em>";
+      msg.style.display = 'block';
+      document.getElementById('secretNote').style.display = 'block';
+
+      // Send the answers to your WhatsApp (Change the number as needed)
+      const outfitVibe = Array.from(document.getElementById('outfitVibe').selectedOptions).map(option => option.text).join(', ');
+      const dayImprover = document.getElementById('dayImprover').value;
+      const thursdayActivity = document.getElementById('thursdayActivity').value;
+
+      const whatsappMessage = encodeURIComponent(`Hey Pankaj! 💖 Here's Mahek's answers to the date surprise questionnaire:\n\n
+      1. Outfit Vibe: ${outfitVibe}\n
+      2. What makes her day better: ${dayImprover}\n
+      3. What to do on Thursday: ${thursdayActivity}\n\n
+      Looking forward to our surprise! ✨`);
+
+      // Redirect to WhatsApp with the message
+      setTimeout(() => {
+        window.location.href = `https://wa.me/919921188501?text=${whatsappMessage}`;
+      }, 3000);
+    }
+
+    const heartsContainer = document.querySelector('.hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }, 300);
+  </script>
+</body>
+</html>
